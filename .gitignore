@@ -1,0 +1,10 @@
+data/
+
+/LICENSE
+/.vscode/
+/__pycache__/
+/checkpoint/
+/dictionary/
+/logdir/
+/Results/
+/checkpoint/
