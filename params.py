@@ -3,18 +3,18 @@ class Params:
 	'''
 	Parameters of our model
 	'''
-	src_train = "data/combine/cutQ.txt"
-	tgt_train = "data/combine/cutA.txt"
+	src_train = "data/test/cutQ.txt"
+	tgt_train = "data/test/cutA.txt"
 	src_test = "data/combine/cutQ_valid.txt"
 	tgt_test = "data/combine/cutA_valid.txt"
-	enc_vocab = 'combine_en.vocab.tsv'
-	dec_vocab = 'combinede.vocab.tsv'
+	enc_vocab = 'test_en.vocab.tsv'
+	dec_vocab = 'test_de.vocab.tsv'
 
 	maxlen = 15
 	batch_size = 64
 	hidden_units = 512
 	logdir = 'logdir'
-	num_epochs = 5
+	num_epochs = 50
 	num_identical = 6
 	num_heads = 8
 	dropout = 0.1

@@ -26,7 +26,7 @@ def make_dic(path, fname):
 			f.write(u"{}\t{}\n".format(word, count))
 
 if __name__ == '__main__':
-	make_dic(pm.src_train, "combine_en.vocab.tsv")
-	make_dic(pm.tgt_train, "combine_de.vocab.tsv")
+	make_dic(pm.src_train, "test_en.vocab.tsv")
+	make_dic(pm.tgt_train, "test_de.vocab.tsv")
 	print("MSG : Constructing Dictionary Finished!")
 

@@ -20,13 +20,23 @@ def chatbot():
 			sv.saver.restore(sess, tf.train.latest_checkpoint(pm.checkpoint))
 			print("MSG : Restore Model!")
 			while True:
-				X = input("请输入")
-				x = [en2idx.get(word, 1) for word in jieba.cut(X + u" <EOS>")]
+				# X = input("请输入:")
+				X = "你好啊"
+				X = list(jieba.cut(X))
+				X.append(u'<EOS>')
+				inpt = [en2idx.get(word, 1) for word in X]
+				X=np.zeros((1, pm.maxlen), np.int32)
+				for i in range(pm.maxlen):
+					if i < len(inpt):
+						X[0,i] = inpt[i]
 				# Autoregressive inference
-				preds = np.zeros((1, pm.maxlen), dtype = np.int32)
+				preds = []
+				nppreds = np.zeros((1, pm.maxlen), dtype = np.int32)
 				for j in range(pm.maxlen):
-					_preds = sess.run(g.preds, feed_dict = {g.inpt: x, g.outpt: preds})
-					preds[:, j] = _preds[:, j]
+					_preds = sess.run(g.preds, feed_dict = {g.inpt: X, g.outpt: nppreds})
+					preds.append(_preds[0,j])
+				got = " ".join(idx2de[idx] for idx in preds).split("<EOS>")[0].strip()
+				print(got)
 
 if __name__ == "__main__":
     chatbot()

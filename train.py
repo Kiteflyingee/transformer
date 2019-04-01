@@ -139,6 +139,7 @@ if __name__ == '__main__':
 
 	with supvisor.managed_session() as sess:
 		for epoch in range(1, pm.num_epochs + 1):
+			print("epoch{}".format(epoch))
 			if supvisor.should_stop():
 				break
 			# process bar
