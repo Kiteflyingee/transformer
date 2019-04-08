@@ -290,21 +290,23 @@ def feedforward(inputs,
 	'''
 
 	with tf.variable_scope(scope, reuse = reuse):
-		# params = {"inputs": inputs, "filters": num_units[0], "kernel_size": 1, \
-				  # "activation": tf.nn.relu, "use_bias": True}
-		# outputs = tf.layers.conv1d(inputs = inputs, filters = num_units[0], kernel_size = 1, activation = tf.nn.relu, use_bias = True)
-		# outputs = tf.layers.conv1d(**params)
-		params = {"inputs": inputs, "num_outputs": num_units[0], \
-				  "activation_fn": tf.nn.relu}
-		outputs = tf.contrib.layers.fully_connected(**params)
-
-		# params = {"inputs": inputs, "filters": num_units[1], "kernel_size": 1, \
-		# 		  "activation": None, "use_bias": True}
-		params = {"inputs": inputs, "num_outputs": num_units[1], \
-				  "activation_fn": None}
-		# outputs = tf.layers.conv1d(inputs = inputs, filters = num_units[1], kernel_size = 1, activation = None, use_bias = True)
-		# outputs = tf.layers.conv1d(**params)
-		outputs = tf.contrib.layers.fully_connected(**params)
+		# conv1d
+		params = {"inputs": inputs, "filters": num_units[0], "kernel_size": 1, \
+				  "activation": tf.nn.relu, "use_bias": True}
+		outputs = tf.layers.conv1d(**params)
+		
+		params = {"inputs": inputs, "filters": num_units[1], "kernel_size": 1, \
+				  "activation": None, "use_bias": True}
+		outputs = tf.layers.conv1d(**params)
+		
+		# fully connected
+		# params = {"inputs": inputs, "num_outputs": num_units[0], \
+		# 		  "activation_fn": tf.nn.relu}
+		# outputs = tf.contrib.layers.fully_connected(**params)
+		
+		# params = {"inputs": inputs, "num_outputs": num_units[1], \
+		# 		  "activation_fn": None}
+		# outputs = tf.contrib.layers.fully_connected(**params)
 
 		# residual connection
 		outputs += inputs

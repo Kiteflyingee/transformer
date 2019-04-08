@@ -19,9 +19,10 @@ def chatbot():
 			# load pre-train model
 			sv.saver.restore(sess, tf.train.latest_checkpoint(pm.checkpoint))
 			print("MSG : Restore Model!")
+			
 			while True:
-				# X = input("请输入:")
-				X = "你好啊"
+				X = input("请输入:")
+				# X = "你好啊"
 				X = list(jieba.cut(X))
 				X.append(u'<EOS>')
 				inpt = [en2idx.get(word, 1) for word in X]

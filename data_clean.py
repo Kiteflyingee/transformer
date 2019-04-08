@@ -3,6 +3,9 @@ from tqdm import tqdm
 import jieba
 import pickle
 
+'''
+这个脚本废弃，重新创建一个只保留文本中中文的脚本
+'''
 def clean(cut_words):
     '''
     '''
@@ -26,8 +29,9 @@ def readfile(filepath):
     with open(filepath, 'r', encoding='utf-8') as f:
         lines = f.readlines()
         for line in lines:
+            line = line.strip()
             words = jieba.cut(line)
-            words = clean(words)
+            # words = clean(words)
             doc.append(words)
     print("read finished!")
     return doc
@@ -82,7 +86,7 @@ def clean_testfile(filepath, target_fileQ, target_fileA):
 if __name__ == "__main__":
     
     # cleanQA()
-    filepath = r"data/qingyun.pkl"
+    filepath = r"data/xiaohuangji.pkl"
     target_fileQ = r"./data/test/cutQ.txt"
     target_fileA = r"./data/test/cutA.txt"
     clean_testfile(filepath, target_fileQ, target_fileA)

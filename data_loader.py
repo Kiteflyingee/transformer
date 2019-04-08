@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 from __future__ import print_function
 from params import Params as pm
 import codecs
@@ -58,6 +58,15 @@ def generate_dataset(source_sents, target_sents, en2idx, de2idx):
 
 	return X, Y, Sources, Targets
 
+def readlines(filepath):
+	with codecs.open(filepath, 'r', 'utf-8') as f:
+		lines = f.readlines()
+		newline = []
+		for line in lines:
+			line = line.strip()
+			newline.append(line)
+	return newline
+
 def load_data(l_data, en2idx, de2idx):
 	'''
 	Read train-data from input datasets
@@ -66,8 +75,8 @@ def load_data(l_data, en2idx, de2idx):
 		l_data: [String], the file name of datasets which used to generate tokens
 	'''
 	if l_data == 'train':
-		en_sents = [line for line in codecs.open(pm.src_train, 'r', 'utf-8').read().split('\n') if line]
-		de_sents = [line for line in codecs.open(pm.tgt_train, 'r', 'utf-8').read().split('\n') if line]
+		en_sents = readlines(pm.src_train)
+		de_sents = readlines(pm.tgt_train)
 		if len(en_sents) == len(de_sents):
 			inpt, outpt, Sources, Targets = generate_dataset(en_sents, de_sents, en2idx, de2idx )
 		else:
@@ -75,8 +84,9 @@ def load_data(l_data, en2idx, de2idx):
 			sys.exit(0)
 		return inpt, outpt
 	elif l_data == 'test':
-		en_sents = [line for line in codecs.open(pm.src_test, 'r', 'utf-8').read().split('\n') if line]
-		de_sents = [line for line in codecs.open(pm.tgt_test, 'r', 'utf-8').read().split('\n') if line]
+		en_sents = readlines(pm.src_test)
+		de_sents = readlines(pm.tgt_test)
+
 		if len(en_sents) == len(de_sents):
 			inpt, outpt, Sources, Targets = generate_dataset(en_sents, de_sents, en2idx, de2idx )
 		else:
