@@ -3,8 +3,8 @@ class Params:
 	'''
 	Parameters of our model
 	'''
-	src_train = "data/test/cutQ.txt"
-	tgt_train = "data/test/cutA.txt"
+	src_train = "data/test/cutQ_train.txt"
+	tgt_train = "data/test/cutA_train.txt"
 	src_test = "data/test/cutQ_valid.txt"
 	tgt_test = "data/test/cutA_valid.txt"
 	enc_vocab = 'test_en.vocab.tsv'
